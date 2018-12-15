@@ -7,8 +7,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException
     {
-        System.out.println("Say hello!");
-        final Crawler crawler = new Crawler(new URL("http://www.gutenberg.org/"));
+        final Crawler crawler = new Crawler(new URL("http://i319728.hera.fhict.nl/"));
     }
 
 }
