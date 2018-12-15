@@ -14,8 +14,10 @@ import java.util.HashSet;
 public class Crawler {
     private final Set<URL> links;
     private final long startTime;
+    private String baseUrl;
 
-    public Crawler(final URL startURL){
+    public Crawler(final URL startURL) {
+        this.baseUrl = startURL.toString();
         this.links = new HashSet<>();
         this.startTime = System.currentTimeMillis();
         crawl(initURLS(startURL));
@@ -33,11 +35,14 @@ public class Crawler {
                     final Elements linksOnPage = document.select("a[href]");
                     for(final Element element : linksOnPage){
                         final String urlText = element.attr("abs:href");
-                        final URL discoveredURL = new URL(urlText);
-                        newURLS.add(discoveredURL);
+                        if (urlText.contains(baseUrl))
+                        {
+                            final URL discoveredURL = new URL(urlText);
+                            newURLS.add(discoveredURL);
+                        }
                     }
                 }
-            }catch (final Exception | Error ignored){
+            } catch (final Exception | Error ignored){
 
             }
             crawl(newURLS);
