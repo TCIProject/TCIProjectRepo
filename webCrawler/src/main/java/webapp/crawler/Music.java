@@ -6,6 +6,9 @@ public class Music {
     private int year;
     private String artist;
 
+    public Music() {
+    }
+
     public Music(String name, String format, int year, String artist) {
         this.name = name;
         this.format = format;
